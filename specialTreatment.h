@@ -16,10 +16,9 @@ class SpecialTreatment: public Treatment{
         SpecialTreatment();
         SpecialTreatment(string, float, float, string);
 
-        string getInfo();
+        string getInfo() override;
         void setPrice(float, bool); 
         void setPrice(bool,float);
-        string getInfo(bool);
         string getInfo(bool);
 
 };
