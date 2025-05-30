@@ -42,18 +42,16 @@ string SpecialTreatment::getInfo(){
     return "Service: "+ serviceName+ "\n"+ "Duration: "+ to_string(duration)+ "\n"+ "Base Price: "+ to_string (basePrice)+ "\n"+ "Time: "+ time+ "\n";
 }
 
-string SpecialTreatment::getInfo(bool over60){
 
-    if (over60){
-
-        return "Service: "+ serviceName+ "\n"+ "Duration: "+ to_string(duration)+ "\n"+ "Base Price: "+ to_string (basePrice)+ "\n"+ "Time: "+ time+ "\n" + "Note: Duration exceeds 60 minurtes. Surcharge applied: $"+ to_string(surcharge);
-
+string SpecialTreatment::getInfo(bool isReturning) {
+    if (isReturning) {
+       return "Service: "+ serviceName+ "\n"+ "Duration: "+ to_string(duration)+ "\n"+ "Base Price: "+ to_string (basePrice)+ "\n"+ "Time: "+ time+ "\n"+ "Client Type: Returning \n Note: Returning client discount applied: 10%"+ "Final price: "+ to_string(basePrice- (basePrice*discount));
+    } else if (duration > 60) {
+       return "Service: "+ serviceName+ "\n"+ "Duration: "+ to_string(duration)+ "\n"+ "Base Price: "+ to_string (basePrice)+ "\n"+ "Time: "+ time+ "\n" + "Note: Duration exceeds 60 minurtes. Surcharge applied: $"+ to_string(surcharge);
+    } else {
+        return "Service: "+ serviceName+ "\n"+ "Duration: "+ to_string(duration)+ "\n"+ "Base Price: "+ to_string (basePrice)+ "\n"+ "Time: "+ time+ "\n";
     }
 }
 
 
-string SpecialTreatment::getInfo(bool returning){
-
-    return "Service: "+ serviceName+ "\n"+ "Duration: "+ to_string(duration)+ "\n"+ "Base Price: "+ to_string (basePrice)+ "\n"+ "Time: "+ time+ "\n"+ "Client Type: Returning \n Note: Returning client discount applied: 10%"+ "Final price: "+ to_string(basePrice- (basePrice*discount));
-}
 
