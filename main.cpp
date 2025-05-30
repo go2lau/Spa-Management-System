@@ -1,24 +1,29 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <cstdlib>
+#include <ctime>
 #include "specialTreatment.h"
 
 int main() {
-    std::cout << "Welcome to the Special Treatment Scheduler" << std::endl;
+    // Seed random number generator
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
 
-    // User inputs for duration, base price, and time
+    std::cout << "Welcome to our Spa!" << std::endl;
+
+    // User input for duration
     float duration;
     std::cout << "Enter duration (in minutes): ";
     std::cin >> duration;
 
-    float price;
-    std::cout << "Enter base price: ";
-    std::cin >> price;
+    // Generate random base price between 1000 and 1800
+    float price = 1000.0f + static_cast<float>(std::rand() % 801);
+    std::cout << "Base price: " << price << std::endl;
 
-    // Clear input buffer before reading a line
+    // Clear input buffer before reading time
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::string time;
-    std::cout << "Enter time (e.g., 14:00): ";
+    std::cout << "Enter time: ";
     std::getline(std::cin, time);
 
     // Construct SpecialTreatment; serviceName is fixed inside the class
@@ -26,7 +31,7 @@ int main() {
 
     // Display basic info using overridden getInfo()
     std::cout << "\n=== Basic Treatment Info ===" << std::endl;
-    std::cout << st.getInfo(false) << std::endl;
+    std::cout << st.getInfo() << std::endl;
 
     // Apply returning-client discount if applicable
     char returningAnswer;
